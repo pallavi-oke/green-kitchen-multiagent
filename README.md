@@ -1,6 +1,8 @@
-# Green Kitchen Copilot: Waste-Free B2B Replenishment (Restocking) for Community Meal Programs
+# Green Kitchen: AI Restocking Copilot for Community Meal Programs 🥗
 
-This is a production-ready AI agent replenishment system designed for community and institutional meal programs.
+This is a production-ready AI agent restocking system designed for community and institutional meal programs.
+
+👉 **[Try the Live Demo Dashboard](https://chef-copilot-996894821314.us-central1.run.app)**
 
 ---
 
