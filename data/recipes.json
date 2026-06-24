@@ -1,0 +1,63 @@
+{
+  "recipes": {
+    "classic burger": {
+      "base_portions": 50,
+      "ingredients": {
+        "ground_beef_patty": 50.0,
+        "burger_buns": 50.0,
+        "sliced_cheddar": 50.0,
+        "french_fries": 15.0
+      }
+    },
+    "pepperoni pizza": {
+      "base_portions": 50,
+      "ingredients": {
+        "pizza_dough": 50.0,
+        "marinara_sauce": 4.0,
+        "shredded_mozzarella": 25.0,
+        "pepperoni_slices": 10.0
+      }
+    },
+    "street tacos": {
+      "base_portions": 50,
+      "ingredients": {
+        "pulled_chicken": 15.0,
+        "corn_tortillas": 150.0,
+        "cilantro_bunches": 5.0,
+        "lime_wedges": 100.0
+      }
+    },
+    "gluten-free burger": {
+      "base_portions": 50,
+      "ingredients": {
+        "ground_beef_patty": 50.0,
+        "gluten_free_burger_buns": 50.0,
+        "sliced_cheddar": 50.0,
+        "french_fries": 15.0
+      }
+    },
+    "saffron rice": {
+      "base_portions": 50,
+      "ingredients": {
+        "saffron_threads": 2.0
+      }
+    },
+    "caesar salad": {
+      "base_portions": 50,
+      "ingredients": {
+        "romaine_lettuce": 15.0,
+        "caesar_dressing": 1.0,
+        "croutons": 5.0,
+        "parmesan_cheese": 2.5
+      }
+    },
+    "chocolate brownie": {
+      "base_portions": 50,
+      "ingredients": {
+        "brownie_mix": 10.0,
+        "eggs": 30.0,
+        "butter": 5.0
+      }
+    }
+  }
+}

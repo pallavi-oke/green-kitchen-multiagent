@@ -1,0 +1,168 @@
+[
+  {
+    "id": "case_1",
+    "description": "Monday Forecast (100 Burgers, 50 Pizzas, 80 Salads) - Zero Starting Stock",
+    "forecast_day": "monday",
+    "starting_stock": {
+      "ground_beef_patty": 0.0,
+      "burger_buns": 0.0,
+      "sliced_cheddar": 0.0,
+      "french_fries": 0.0,
+      "pizza_dough": 0.0,
+      "marinara_sauce": 0.0,
+      "shredded_mozzarella": 0.0,
+      "pepperoni_slices": 0.0,
+      "romaine_lettuce": 0.0,
+      "caesar_dressing": 0.0,
+      "croutons": 0.0,
+      "parmesan_cheese": 0.0
+    },
+    "expected_orders": {
+      "SUP-1002": 1,
+      "SUP-2005": 2,
+      "SUP-3011": 1,
+      "SUP-4022": 1,
+      "SUP-5033": 1,
+      "SUP-6044": 1,
+      "SUP-7055": 2,
+      "SUP-8066": 1,
+      "SUP-9011": 1,
+      "SUP-9022": 1,
+      "SUP-9033": 1,
+      "SUP-9044": 1
+    }
+  },
+  {
+    "id": "case_2",
+    "description": "Monday Forecast (100 Burgers, 50 Pizzas, 80 Salads) - With Existing Stock",
+    "forecast_day": "monday",
+    "starting_stock": {
+      "ground_beef_patty": 20.0,
+      "burger_buns": 50.0,
+      "sliced_cheddar": 0.0,
+      "french_fries": 10.0,
+      "pizza_dough": 10.0,
+      "marinara_sauce": 0.0,
+      "shredded_mozzarella": 15.0,
+      "pepperoni_slices": 0.0,
+      "romaine_lettuce": 0.0,
+      "caesar_dressing": 0.0,
+      "croutons": 0.0,
+      "parmesan_cheese": 0.0
+    },
+    "expected_orders": {
+      "SUP-1002": 1,
+      "SUP-2005": 1,
+      "SUP-3011": 1,
+      "SUP-4022": 1,
+      "SUP-5033": 1,
+      "SUP-6044": 1,
+      "SUP-7055": 1,
+      "SUP-8066": 1,
+      "SUP-9011": 1,
+      "SUP-9022": 1,
+      "SUP-9033": 1,
+      "SUP-9044": 1
+    }
+  },
+  {
+    "id": "case_3",
+    "description": "Tuesday Forecast (120 Tacos, 80 Burgers, 150 Brownies) - Zero Starting Stock",
+    "forecast_day": "tuesday",
+    "starting_stock": {
+      "pulled_chicken": 0.0,
+      "corn_tortillas": 0.0,
+      "cilantro_bunches": 0.0,
+      "lime_wedges": 0.0,
+      "ground_beef_patty": 0.0,
+      "burger_buns": 0.0,
+      "sliced_cheddar": 0.0,
+      "french_fries": 0.0,
+      "brownie_mix": 0.0,
+      "eggs": 0.0,
+      "butter": 0.0
+    },
+    "expected_orders": {
+      "SUP-9077": 2,
+      "SUP-1102": 2,
+      "SUP-1203": 1,
+      "SUP-1304": 2,
+      "SUP-1002": 1,
+      "SUP-2005": 2,
+      "SUP-3011": 1,
+      "SUP-4022": 1,
+      "SUP-9055": 2,
+      "SUP-9068": 1,
+      "SUP-9088": 1
+    }
+  },
+  {
+    "id": "case_4",
+    "description": "Thursday Forecast (50 GF Burgers, 40 Salads) - GF Bun Matching Check",
+    "forecast_day": "thursday",
+    "starting_stock": {
+      "ground_beef_patty": 0.0,
+      "gluten_free_burger_buns": 0.0,
+      "sliced_cheddar": 0.0,
+      "french_fries": 0.0,
+      "romaine_lettuce": 0.0,
+      "caesar_dressing": 0.0,
+      "croutons": 0.0,
+      "parmesan_cheese": 0.0
+    },
+    "expected_orders": {
+      "SUP-1002": 1,
+      "SUP-2009": 3,
+      "SUP-3011": 1,
+      "SUP-4022": 1,
+      "SUP-9011": 1,
+      "SUP-9022": 1,
+      "SUP-9033": 1,
+      "SUP-9044": 1
+    }
+  },
+  {
+    "id": "case_5",
+    "description": "Friday Forecast (10 Burgers, 20 Brownies) - Low-Value Order MOQ Warning Check",
+    "forecast_day": "friday",
+    "starting_stock": {
+      "ground_beef_patty": 0.0,
+      "burger_buns": 0.0,
+      "sliced_cheddar": 0.0,
+      "french_fries": 0.0,
+      "brownie_mix": 0.0,
+      "eggs": 0.0,
+      "butter": 0.0
+    },
+    "expected_orders": {
+      "SUP-1002": 1,
+      "SUP-2005": 1,
+      "SUP-3011": 1,
+      "SUP-4022": 1,
+      "SUP-9055": 1,
+      "SUP-9068": 1,
+      "SUP-9088": 1
+    },
+    "moq_warning": true
+  },
+  {
+    "id": "case_6",
+    "description": "Saturday Forecast (500 Saffron Rice, 200 Salads) - Single-Item High Value Budget Alert",
+    "forecast_day": "saturday",
+    "starting_stock": {
+      "saffron_threads": 0.0,
+      "romaine_lettuce": 0.0,
+      "caesar_dressing": 0.0,
+      "croutons": 0.0,
+      "parmesan_cheese": 0.0
+    },
+    "expected_orders": {
+      "SUP-8801": 20,
+      "SUP-9011": 3,
+      "SUP-9022": 1,
+      "SUP-9033": 2,
+      "SUP-9044": 2
+    },
+    "budget_warning": true
+  }
+]

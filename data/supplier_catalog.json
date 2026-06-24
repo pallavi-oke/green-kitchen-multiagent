@@ -1,0 +1,172 @@
+{
+  "supplier_catalog": {
+    "ground_beef_patty": {
+      "sku": "SUP-1002",
+      "description": "Ground Beef Patties 80/20 Fresh",
+      "case_size": 100.0,
+      "case_unit": "count",
+      "case_price": 120.00,
+      "unit_per_case": 100.0
+    },
+    "burger_buns": {
+      "sku": "SUP-2005",
+      "description": "Brioche Burger Buns 4-Inch Sliced",
+      "case_size": 72.0,
+      "case_unit": "count",
+      "case_price": 25.00,
+      "unit_per_case": 72.0
+    },
+    "sliced_cheddar": {
+      "sku": "SUP-3011",
+      "description": "Sliced Mild Cheddar Cheese Slices",
+      "case_size": 120.0,
+      "case_unit": "count",
+      "case_price": 40.00,
+      "unit_per_case": 120.0
+    },
+    "french_fries": {
+      "sku": "SUP-4022",
+      "description": "Straight Cut French Fries Frozen",
+      "case_size": 30.0,
+      "case_unit": "lbs",
+      "case_price": 45.00,
+      "unit_per_case": 30.0
+    },
+    "pizza_dough": {
+      "sku": "SUP-5033",
+      "description": "Pre-Portioned Pizza Dough Balls 12-Inch",
+      "case_size": 60.0,
+      "case_unit": "count",
+      "case_price": 70.00,
+      "unit_per_case": 60.0
+    },
+    "marinara_sauce": {
+      "sku": "SUP-6044",
+      "description": "Premium Marinara Sauce #10 Cans",
+      "case_size": 6.0,
+      "case_unit": "cans",
+      "case_price": 48.00,
+      "unit_per_case": 6.0
+    },
+    "shredded_mozzarella": {
+      "sku": "SUP-7055",
+      "description": "Shredded Mozzarella Cheese Bulk",
+      "case_size": 20.0,
+      "case_unit": "lbs",
+      "case_price": 55.00,
+      "unit_per_case": 20.0
+    },
+    "pepperoni_slices": {
+      "sku": "SUP-8066",
+      "description": "Sliced Pepperoni Bulk Pack",
+      "case_size": 10.0,
+      "case_unit": "lbs",
+      "case_price": 65.00,
+      "unit_per_case": 10.0
+    },
+    "pulled_chicken": {
+      "sku": "SUP-9077",
+      "description": "Cooked Pulled Chicken Breast",
+      "case_size": 20.0,
+      "case_unit": "lbs",
+      "case_price": 95.00,
+      "unit_per_case": 20.0
+    },
+    "corn_tortillas": {
+      "sku": "SUP-1102",
+      "description": "White Corn Tortillas 6-Inch",
+      "case_size": 300.0,
+      "case_unit": "count",
+      "case_price": 18.00,
+      "unit_per_case": 300.0
+    },
+    "cilantro_bunches": {
+      "sku": "SUP-1203",
+      "description": "Fresh Cilantro Bunches Box",
+      "case_size": 30.0,
+      "case_unit": "bunches",
+      "case_price": 15.00,
+      "unit_per_case": 30.0
+    },
+    "lime_wedges": {
+      "sku": "SUP-1304",
+      "description": "Fresh Pre-Cut Lime Wedges",
+      "case_size": 200.0,
+      "case_unit": "count",
+      "case_price": 22.00,
+      "unit_per_case": 200.0
+    },
+    "gluten_free_burger_buns": {
+      "sku": "SUP-2009",
+      "description": "Gluten-Free Hamburger Buns 4-Inch Sliced",
+      "case_size": 24.0,
+      "case_unit": "count",
+      "case_price": 32.00,
+      "unit_per_case": 24.0
+    },
+    "saffron_threads": {
+      "sku": "SUP-8801",
+      "description": "Saffron Threads Premium Grade Spanish",
+      "case_size": 1.0,
+      "case_unit": "oz",
+      "case_price": 180.00,
+      "unit_per_case": 1.0
+    },
+    "romaine_lettuce": {
+      "sku": "SUP-9011",
+      "description": "Romaine Lettuce Hearts Fresh Box",
+      "case_size": 24.0,
+      "case_unit": "heads",
+      "case_price": 28.00,
+      "unit_per_case": 24.0
+    },
+    "caesar_dressing": {
+      "sku": "SUP-9022",
+      "description": "Caesar Dressing Premium Gallon Jugs",
+      "case_size": 4.0,
+      "case_unit": "gallons",
+      "case_price": 42.00,
+      "unit_per_case": 4.0
+    },
+    "croutons": {
+      "sku": "SUP-9033",
+      "description": "Homestyle Seasoned Croutons Bulk Pack",
+      "case_size": 10.0,
+      "case_unit": "lbs",
+      "case_price": 20.00,
+      "unit_per_case": 10.0
+    },
+    "parmesan_cheese": {
+      "sku": "SUP-9044",
+      "description": "Grated Parmesan Cheese Shredded Tub",
+      "case_size": 5.0,
+      "case_unit": "lbs",
+      "case_price": 30.00,
+      "unit_per_case": 5.0
+    },
+    "brownie_mix": {
+      "sku": "SUP-9055",
+      "description": "Chocolate Fudge Brownie Dry Mix Bag",
+      "case_size": 25.0,
+      "case_unit": "lbs",
+      "case_price": 35.00,
+      "unit_per_case": 25.0
+    },
+    "eggs": {
+      "sku": "SUP-9068",
+      "description": "Fresh Large Grade A Eggs Flat",
+      "case_size": 180.0,
+      "case_unit": "count",
+      "case_price": 45.00,
+      "unit_per_case": 180.0
+    },
+    "butter": {
+      "sku": "SUP-9088",
+      "description": "Salted Butter Solid Prints Case",
+      "case_size": 36.0,
+      "case_unit": "lbs",
+      "case_price": 110.00,
+      "unit_per_case": 36.0
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "forecasts": {
+    "monday": {
+      "classic burger": 100,
+      "pepperoni pizza": 50,
+      "caesar salad": 80
+    },
+    "tuesday": {
+      "street tacos": 120,
+      "classic burger": 80,
+      "chocolate brownie": 150
+    },
+    "wednesday": {
+      "pepperoni pizza": 80,
+      "street tacos": 100,
+      "caesar salad": 60,
+      "chocolate brownie": 100
+    },
+    "thursday": {
+      "gluten-free burger": 50,
+      "caesar salad": 40
+    },
+    "friday": {
+      "classic burger": 10,
+      "chocolate brownie": 20
+    },
+    "saturday": {
+      "saffron rice": 500,
+      "caesar salad": 200
+    }
+  }
+}

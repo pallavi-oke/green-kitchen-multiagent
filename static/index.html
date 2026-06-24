@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Kitchen: Agents to Save Food, Money, and Volunteer Time</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            --panel-bg: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --text-primary: #1f2937;
+            --text-secondary: #4b5563;
+            --accent-primary: #4f46e5;
+            --accent-glow: rgba(79, 70, 229, 0.08);
+            --success: #059669;
+            --warning: #d97706;
+            --danger: #dc2626;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .logo-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: rgba(5, 150, 105, 0.1);
+            color: var(--success);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(5, 150, 105, 0.2);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(5, 150, 105, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(5, 150, 105, 0); }
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        .glass-panel {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.75rem;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        select:focus, input:focus {
+            border-color: var(--accent-primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px 0 rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .forecast-list {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .forecast-item {
+            background: #f9fafb;
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        .forecast-item span.qty {
+            background: rgba(79, 70, 229, 0.08);
+            color: var(--accent-primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .stock-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            max-height: 350px;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+
+        .stock-item {
+            display: grid;
+            grid-template-columns: 1fr 100px;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stock-item label {
+            margin-bottom: 0;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .stock-input-wrapper {
+            position: relative;
+        }
+
+        .stock-input-wrapper input {
+            padding-right: 2rem;
+            text-align: right;
+        }
+
+        .stock-input-wrapper span.unit {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .right-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .kpi-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .kpi-value {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .kpi-value.cost {
+            color: var(--accent-primary);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        th {
+            padding: 0.75rem 1rem;
+            background: #f9fafb;
+            color: var(--text-secondary);
+            font-weight: 600;
+            border-bottom: 2px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        .sku-tag {
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.04);
+            color: var(--text-secondary);
+            padding: 0.15rem 0.35rem;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 0.72rem;
+        }
+
+        .badge {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .badge-success { background: rgba(5, 150, 105, 0.12); color: #065f46; }
+        .badge-warning { background: rgba(217, 119, 6, 0.12); color: #92400e; }
+        .badge-danger { background: rgba(220, 38, 38, 0.12); color: #991b1b; }
+
+        .quick-copy-box {
+            background: #f9fafb;
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.8rem;
+            max-height: 150px;
+            overflow-y: auto;
+            color: var(--accent-primary);
+            white-space: pre-wrap;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.7rem;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .copy-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .links-container {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .link-card {
+            flex: 1;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .link-card:hover {
+            background: #f9fafb;
+            border-color: var(--accent-primary);
+            transform: translateY(-1px);
+        }
+
+        .link-icon {
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .modal h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">G</div>
+            <div>
+                <div class="logo-text">Green Kitchen</div>
+                <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 500; text-transform: uppercase;">Agents To Save Wastage of Food, Money and Precious Volunteers' Time</div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                Langfuse Observability
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Green Kitchen Hero Banner -->
+        <div class="glass-panel" style="grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; padding: 2rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; border: none; position: relative; overflow: hidden; box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.2);">
+            <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(255, 255, 255, 0.1); border-radius: 50%; filter: blur(30px);"></div>
+            <div style="z-index: 2;">
+                <h1 style="font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; line-height: 1.1;">Green Kitchen</h1>
+                <p style="font-size: 1.1rem; font-weight: 500; opacity: 0.95; max-width: 800px; line-height: 1.4;">Agents To Save Wastage of Food, Money and Precious Volunteers' Time</p>
+            </div>
+            <div style="display: flex; gap: 1.5rem; color: rgba(255, 255, 255, 0.75); z-index: 1; align-items: center; user-select: none;">
+                <!-- Leaf (Food Waste) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 3.5 1 9.8a7 7 0 0 1-13.9.2"/><path d="M9 22v-4h4"/></svg>
+                <!-- Dollar Sign (Money Saved) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <!-- Clock (Time Saved) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+        </div>
+
+        <!-- Sidebar controls -->
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+            <div class="glass-panel">
+                <h2>Step 1: Daily Meal Plan</h2>
+                <div class="form-group" style="margin-top: 1rem;">
+                    <label for="day-select">Select Day</label>
+                    <select id="day-select" onchange="onDayChange()">
+                        <option value="monday">Monday (Burger/Pizza/Salad)</option>
+                        <option value="tuesday">Tuesday (Taco/Burger/Brownie)</option>
+                        <option value="wednesday">Wednesday (Pizza/Taco/Salad/Brownie)</option>
+                        <option value="thursday">Thursday (Gluten-Free Burger/Salad)</option>
+                        <option value="friday">Friday (Low MOQ Demo)</option>
+                        <option value="saturday">Saturday (Budget Warning Demo)</option>
+                    </select>
+                </div>
+                <div class="forecast-list" id="forecast-container">
+                    <!-- Forecast items injected here -->
+                </div>
+            </div>
+
+            <div class="glass-panel">
+                <h2>Step 2: Inventory Check</h2>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                    <button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem;" onclick="setAllStock(0)">🧹 Clear Stock</button>
+                    <button class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.4rem;" onclick="setMockStock()">📋 Auto-Fill Stock</button>
+                    <button class="btn btn-secondary" id="voice-btn" style="font-size: 0.75rem; padding: 0.4rem;" onclick="startVoiceInput()">🎙️ Voice Log (Hands-Free)</button>
+                </div>
+                <div class="stock-list" id="stock-container">
+                    <!-- Stock items will be injected here -->
+                </div>
+                <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="runReplenishmentPipeline()">Generate Order Draft</button>
+            </div>
+        </div>
+
+        <!-- Main Display Panel -->
+        <div class="right-layout">
+            <!-- KPI Cards -->
+            <div class="kpi-row">
+                <div class="kpi-card">
+                    <span class="kpi-label">Estimated Order Cost</span>
+                    <span class="kpi-value cost" id="kpi-cost">$0.00</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Order Case Count</span>
+                    <span class="kpi-value" id="kpi-cases">0 cs</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-label">Administrative Time Saved</span>
+                    <span class="kpi-value" style="color: var(--success);">25 Mins</span>
+                </div>
+            </div>
+
+            <!-- Draft Order Table Panel -->
+            <div class="glass-panel" style="flex: 1;">
+                <h2>Step 3: Supplier Draft Order Review</h2>
+                <div class="table-container">
+                    <table id="order-table">
+                        <thead>
+                            <tr>
+                                <th>Ingredient</th>
+                                <th>Supplier Description</th>
+                                <th>Gross Needed</th>
+                                <th>On Hand</th>
+                                <th>Net Needed</th>
+                                <th>Order Cases</th>
+                                <th>Surplus</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <tr>
+                                <td colspan="8" style="text-align: center; color: var(--text-secondary); padding: 3rem;">
+                                    Select a daily meal plan, verify stock on hand, and click "Generate Order Draft" to calculate replenishment needs.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="checkout-container" style="display: none; margin-top: 2rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="font-size: 0.85rem; color: var(--text-secondary);">
+                        📋 <strong>B2B Supplier Cart Quick Copy String</strong> (Paste into Sysco Portal):
+                    </div>
+                    <div class="quick-copy-box" id="quick-copy"></div>
+                    <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 0.5rem;">
+                        <button class="btn btn-secondary" style="width: auto;" onclick="resetPipeline()">Clear</button>
+                        <button class="btn btn-primary" style="width: auto;" onclick="approveDraftOrder()">Approve and Submit Draft</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI & Social Impact Calculator -->
+            <div class="glass-panel">
+                <h2>📊 Live ROI & Community Impact Calculator</h2>
+                <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 0.75rem;">Meals / Day</label>
+                            <input type="number" id="roi-meals" value="500" oninput="calculateROI()" style="padding: 0.5rem; font-size: 0.8rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 0.75rem;">Cost / Meal</label>
+                            <input type="number" id="roi-meal-cost" value="3.00" step="0.5" oninput="calculateROI()" style="padding: 0.5rem; font-size: 0.8rem;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label style="font-size: 0.75rem;">Labor Rate ($/hr)</label>
+                            <input type="number" id="roi-labor-rate" value="25" oninput="calculateROI()" style="padding: 0.5rem; font-size: 0.8rem;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; border-top: 1px solid var(--border-color); padding-top: 1rem; text-align: center;">
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Est. Token Cost</div>
+                            <div id="calc-token-cost" style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-top: 0.25rem;">$0.01/mo</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Labor Value Saved</div>
+                            <div id="calc-labor-saved" style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--success); margin-top: 0.25rem;">$313/mo</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Food Waste Saved</div>
+                            <div id="calc-waste-saved" style="font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--accent-primary); margin-top: 0.25rem;">$3,600/mo</div>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(16, 185, 129, 0.05); border: 1px dashed rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--success); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Community Impact</div>
+                            <div style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.15rem;" id="calc-meals-restored">Feeds <span style="color: var(--text-primary); font-weight: 700;">40 extra people/day</span> (1,200/mo)</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 0.65rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">ROI Ratio</div>
+                            <div id="calc-roi-ratio" style="font-family: 'Outfit', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--success);">1,947x</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer Observability Links -->
+            <div class="glass-panel">
+                <h2>Developer Resources & Observability Links</h2>
+                <div class="links-container">
+                    <a href="https://us.cloud.langfuse.com" target="_blank" class="link-card">
+                        <div>
+                            <div style="font-weight: 600;">Langfuse Dashboard</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">Traces, metrics, latency, and costs</div>
+                        </div>
+                        <span class="link-icon">↗</span>
+                    </a>
+                    <a href="/docs" target="_blank" class="link-card">
+                        <div>
+                            <div style="font-weight: 600;">FastAPI Interactive Docs</div>
+                            <div style="font-size: 0.7rem; color: var(--text-secondary);">Interactive API endpoints and schemas</div>
+                        </div>
+                        <span class="link-icon">↗</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-icon">✓</div>
+            <h3>Draft Cart Synced!</h3>
+            <p id="modal-text">Order draft has been successfully loaded into the Supplier's account. The Executive Director has been notified to review and submit.</p>
+            <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock data matching forecasts and recipes.json
+        const forecasts = {
+            monday: { "classic burger": 100, "pepperoni pizza": 50, "caesar salad": 80 },
+            tuesday: { "street tacos": 120, "classic burger": 80, "chocolate brownie": 150 },
+            wednesday: { "pepperoni pizza": 80, "street tacos": 100, "caesar salad": 60, "chocolate brownie": 100 },
+            thursday: { "gluten-free burger": 50, "caesar salad": 40 },
+            friday: { "classic burger": 10, "chocolate brownie": 20 },
+            saturday: { "saffron rice": 500, "caesar salad": 200 }
+        };
+
+        const recipeIngredients = {
+            "classic burger": ["ground_beef_patty", "burger_buns", "sliced_cheddar", "french_fries"],
+            "pepperoni pizza": ["pizza_dough", "marinara_sauce", "shredded_mozzarella", "pepperoni_slices"],
+            "street tacos": ["pulled_chicken", "corn_tortillas", "cilantro_bunches", "lime_wedges"],
+            "gluten-free burger": ["ground_beef_patty", "gluten_free_burger_buns", "sliced_cheddar", "french_fries"],
+            "saffron rice": ["saffron_threads"],
+            "caesar salad": ["romaine_lettuce", "caesar_dressing", "croutons", "parmesan_cheese"],
+            "chocolate brownie": ["brownie_mix", "eggs", "butter"]
+        };
+
+        const ingredientUnits = {
+            "ground_beef_patty": "count", "burger_buns": "count", "sliced_cheddar": "count", "french_fries": "lbs",
+            "pizza_dough": "count", "marinara_sauce": "cans", "shredded_mozzarella": "lbs", "pepperoni_slices": "lbs",
+            "pulled_chicken": "lbs", "corn_tortillas": "count", "cilantro_bunches": "bunches", "lime_wedges": "count",
+            "gluten_free_burger_buns": "count", "saffron_threads": "oz",
+            "romaine_lettuce": "heads", "caesar_dressing": "gallons", "croutons": "lbs", "parmesan_cheese": "lbs",
+            "brownie_mix": "lbs", "eggs": "count", "butter": "lbs"
+        };
+
+        const mockStockData = {
+            "ground_beef_patty": 20, "burger_buns": 50, "sliced_cheddar": 10, "french_fries": 15,
+            "pizza_dough": 10, "marinara_sauce": 2, "shredded_mozzarella": 12, "pepperoni_slices": 5,
+            "pulled_chicken": 8, "corn_tortillas": 60, "cilantro_bunches": 2, "lime_wedges": 40,
+            "gluten_free_burger_buns": 10, "saffron_threads": 1.5,
+            "romaine_lettuce": 12, "caesar_dressing": 1.0, "croutons": 4.0, "parmesan_cheese": 2.0,
+            "brownie_mix": 10, "eggs": 36, "butter": 5.0
+        };
+
+        let currentIngredients = [];
+        let orderDraft = [];
+
+        function onDayChange() {
+            const day = document.getElementById("day-select").value;
+            const dayForecast = forecasts[day];
+            
+            // Render forecast list
+            const forecastContainer = document.getElementById("forecast-container");
+            forecastContainer.innerHTML = "";
+            
+            currentIngredients = [];
+            
+            for (const [dish, qty] of Object.entries(dayForecast)) {
+                const item = document.createElement("div");
+                item.className = "forecast-item";
+                item.innerHTML = `
+                    <span style="text-transform: capitalize; font-weight: 500;">${dish}</span>
+                    <span class="qty">${qty} portions</span>
+                `;
+                forecastContainer.appendChild(item);
+                
+                // Aggregate needed ingredients
+                const ingredients = recipeIngredients[dish] || [];
+                ingredients.forEach(ing => {
+                    if (!currentIngredients.includes(ing)) {
+                        currentIngredients.push(ing);
+                    }
+                });
+            }
+            
+            // Render stock list
+            renderStockList();
+        }
+
+        function renderStockList() {
+            const stockContainer = document.getElementById("stock-container");
+            stockContainer.innerHTML = "";
+            
+            currentIngredients.forEach(ing => {
+                const name = ing.replace(/_/g, ' ');
+                const unit = ingredientUnits[ing] || "units";
+                
+                const item = document.createElement("div");
+                item.className = "stock-item";
+                item.innerHTML = `
+                    <label style="text-transform: capitalize;">${name}</label>
+                    <div class="stock-input-wrapper">
+                        <input type="number" id="stock-${ing}" min="0" value="0" placeholder="0">
+                        <span class="unit">${unit}</span>
+                    </div>
+                `;
+                stockContainer.appendChild(item);
+            });
+        }
+
+        function setAllStock(val) {
+            currentIngredients.forEach(ing => {
+                const el = document.getElementById(`stock-${ing}`);
+                if (el) el.value = val;
+            });
+        }
+
+        function setMockStock() {
+            currentIngredients.forEach(ing => {
+                const el = document.getElementById(`stock-${ing}`);
+                if (el) el.value = mockStockData[ing] || 0;
+            });
+        }
+
+        async function runReplenishmentPipeline() {
+            const day = document.getElementById("day-select").value;
+            const stock = {};
+            
+            currentIngredients.forEach(ing => {
+                const el = document.getElementById(`stock-${ing}`);
+                stock[ing] = el ? parseFloat(el.value) || 0.0 : 0.0;
+            });
+            
+            const tbody = document.getElementById("table-body");
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="8" style="text-align: center; color: var(--accent-primary); padding: 3rem;">
+                        Calibrating ingredient needs and matching catalog items...
+                    </td>
+                </tr>
+            `;
+            
+            try {
+                const res = await fetch("/forecast", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ day: day, starting_stock: stock })
+                });
+                
+                if (!res.ok) throw new Error("API returns status " + res.status);
+                
+                const data = await res.json();
+                orderDraft = data.draft_order;
+                
+                // Update KPIs
+                document.getElementById("kpi-cost").innerText = "$" + data.total_estimated_cost.toFixed(2);
+                const totalCases = orderDraft.reduce((acc, item) => acc + item.cases, 0);
+                document.getElementById("kpi-cases").innerText = totalCases + " cs";
+                
+                // Render table
+                tbody.innerHTML = "";
+                if (orderDraft.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;">No items to order. Everything is covered!</td></tr>`;
+                    document.getElementById("checkout-container").style.display = "none";
+                    return;
+                }
+                
+                orderDraft.forEach(item => {
+                    const row = document.createElement("tr");
+                    const name = item.ingredient.replace(/_/g, ' ');
+                    const orderBadge = item.cases > 0 
+                        ? `<span class="badge badge-success">${item.cases}cs</span>` 
+                        : `<span class="badge badge-danger">None</span>`;
+                    const surplusBadge = item.surplus > 0 
+                        ? `<span class="badge badge-warning">${item.surplus.toFixed(1)} ${item.unit}</span>` 
+                        : `<span class="badge badge-success">0.0</span>`;
+                        
+                    row.innerHTML = `
+                        <td style="text-transform: capitalize; font-weight: 500;">${name}</td>
+                        <td>${item.description} <span class="sku-tag">${item.sku}</span></td>
+                        <td>${item.gross.toFixed(1)}</td>
+                        <td>${item.stock.toFixed(1)}</td>
+                        <td>${item.net.toFixed(1)}</td>
+                        <td>${orderBadge}</td>
+                        <td>${surplusBadge}</td>
+                        <td style="font-weight: 600; color: var(--accent-primary);">$${item.cost.toFixed(2)}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+                
+                // Render Quick Copy box
+                const quickCopy = document.getElementById("quick-copy");
+                quickCopy.innerHTML = `<button class="copy-btn" onclick="copyToClipboard()">Copy List</button>`;
+                let copyText = "";
+                orderDraft.forEach(item => {
+                    if (item.cases > 0) {
+                        copyText += `${item.sku}  -->  ${item.cases} cs  (${item.description})\n`;
+                    }
+                });
+                
+                const pre = document.createElement("pre");
+                pre.style.margin = "0";
+                pre.innerText = copyText || "No items to order.";
+                quickCopy.appendChild(pre);
+                
+                // Show Checkout section
+                document.getElementById("checkout-container").style.display = "flex";
+                
+            } catch (err) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; color: var(--danger); padding: 3rem;">
+                            Error running pipeline: ${err.message}
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        function copyToClipboard() {
+            let copyText = "";
+            orderDraft.forEach(item => {
+                if (item.cases > 0) {
+                    copyText += `${item.sku}  -->  ${item.cases} cs  (${item.description})\n`;
+                }
+            });
+            navigator.clipboard.writeText(copyText).then(() => {
+                alert("Order list copied to clipboard!");
+            });
+        }
+
+        async function approveDraftOrder() {
+            if (orderDraft.length === 0) return;
+            
+            const submitItems = orderDraft.map(item => ({
+                ingredient: item.ingredient,
+                description: item.description,
+                sku: item.sku,
+                cases: item.cases,
+                cost: item.cost
+            }));
+            
+            try {
+                const res = await fetch("/approve", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ items: submitItems })
+                });
+                
+                if (!res.ok) throw new Error("Approval failed");
+                
+                const data = await res.json();
+                document.getElementById("modal-text").innerText = `Successfully approved and sent ${data.item_count} items to the B2B Supplier. Total order cost: $${data.total_cost.toFixed(2)}.`;
+                document.getElementById("modal-overlay").classList.add("active");
+                
+            } catch (err) {
+                alert("Error submitting approval: " + err.message);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById("modal-overlay").classList.remove("active");
+            resetPipeline();
+        }
+
+        function resetPipeline() {
+            orderDraft = [];
+            document.getElementById("kpi-cost").innerText = "$0.00";
+            document.getElementById("kpi-cases").innerText = "0 cs";
+            document.getElementById("table-body").innerHTML = `
+                <tr>
+                    <td colspan="8" style="text-align: center; color: var(--text-secondary); padding: 3rem;">
+                        Select a daily meal plan, verify stock on hand, and click "Generate Order Draft" to calculate replenishment needs.
+                    </td>
+                </tr>
+            `;
+            document.getElementById("checkout-container").style.display = "none";
+        }
+
+        // --- WEB SPEECH API VOICE INPUT ---
+        let voiceRecognition = null;
+
+        function startVoiceInput() {
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!window.SpeechRecognition) {
+                alert("Voice recognition is not supported in this browser. Try Chrome.");
+                return;
+            }
+            
+            const voiceBtn = document.getElementById("voice-btn");
+            
+            if (voiceRecognition) {
+                voiceRecognition.stop();
+                return;
+            }
+            
+            voiceRecognition = new SpeechRecognition();
+            voiceRecognition.continuous = true;
+            voiceRecognition.interimResults = false;
+            voiceRecognition.lang = 'en-US';
+            
+            voiceBtn.innerText = "🛑 Stop Listening";
+            voiceBtn.style.background = "var(--danger)";
+            voiceBtn.style.color = "white";
+            
+            voiceRecognition.addEventListener('result', e => {
+                const transcript = Array.from(e.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                
+                parseVoiceInstruction(transcript);
+            });
+            
+            voiceRecognition.addEventListener('end', () => {
+                voiceBtn.innerText = "🎙️ Voice Log (Hands-Free)";
+                voiceBtn.style.background = "";
+                voiceBtn.style.color = "";
+                voiceRecognition = null;
+            });
+            
+            voiceRecognition.addEventListener('error', e => {
+                if (e.error !== "aborted") {
+                    alert("Voice recognition error: " + e.error);
+                }
+            });
+            
+            voiceRecognition.start();
+        }
+
+        function parseVoiceInstruction(text) {
+            console.log("Voice Input Received:", text);
+            const lowerText = text.toLowerCase().replace(/[,.]/g, ' '); // remove punctuation
+            const words = lowerText.split(/\s+/).filter(w => w.length > 0);
+            
+            const wordMap = {
+                "zero": 0, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+                "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+                "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+                "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20,
+                "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60, "seventy": 70,
+                "eighty": 80, "ninety": 90
+            };
+            
+            // Extract pairs of [ingredient phrase, number]
+            const items = [];
+            let currentWords = [];
+            
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i];
+                let val = null;
+                
+                if (wordMap[word] !== undefined) {
+                    val = wordMap[word];
+                } else {
+                    const num = parseFloat(word);
+                    if (!isNaN(num)) {
+                        val = num;
+                    }
+                }
+                
+                if (val !== null) {
+                    // Preceding words correspond to the ingredient name
+                    if (currentWords.length > 0) {
+                        items.push({
+                            phrase: currentWords.join(' '),
+                            value: val
+                        });
+                        currentWords = [];
+                    }
+                } else {
+                    if (word !== "and" && word !== "set" && word !== "to" && word !== "stock") {
+                        currentWords.push(word);
+                    }
+                }
+            }
+            
+            console.log("Parsed Voice Items:", items);
+            
+            if (items.length === 0) {
+                alert(`Heard: "${text}". Could not extract any ingredient/number pairs. Try: "romaine lettuce 12"`);
+                return;
+            }
+            
+            let matchCount = 0;
+            
+            items.forEach(item => {
+                let matchedIngredient = null;
+                let maxMatchScore = 0;
+                
+                currentIngredients.forEach(ing => {
+                    const cleanName = ing.replace(/_/g, ' ');
+                    const ingKeywords = cleanName.split(' ');
+                    
+                    let score = 0;
+                    ingKeywords.forEach(kw => {
+                        if (item.phrase.includes(kw)) {
+                            score += 2;
+                        }
+                    });
+                    
+                    if (item.phrase.includes(cleanName)) {
+                        score += 5;
+                    }
+                    
+                    if (score > maxMatchScore) {
+                        maxMatchScore = score;
+                        matchedIngredient = ing;
+                    }
+                });
+                
+                if (matchedIngredient && maxMatchScore > 0) {
+                    const el = document.getElementById(`stock-${matchedIngredient}`);
+                    if (el) {
+                        el.value = item.value;
+                        matchCount++;
+                        // Add flash visual effect
+                        el.style.borderColor = "var(--success)";
+                        setTimeout(() => el.style.borderColor = "", 1500);
+                    }
+                }
+            });
+            
+            if (matchCount === 0) {
+                alert(`Heard: "${text}". Could not map to active ingredients.`);
+            }
+        }
+
+        function calculateROI() {
+            const meals = parseFloat(document.getElementById("roi-meals").value) || 0;
+            const cost = parseFloat(document.getElementById("roi-meal-cost").value) || 0;
+            const laborRate = parseFloat(document.getElementById("roi-labor-rate").value) || 0;
+            
+            // Labor Value Saved = 12.5 hours/month saved * laborRate (reduces prep from 30 min to under 5 min per cycle)
+            const laborSaved = 12.5 * laborRate;
+            // Food Waste Saved = meals * cost * 30 days * 8% (0.08)
+            const wasteSaved = meals * cost * 30 * 0.08;
+            // Meals Restored = wasteSaved / cost
+            const monthlyMealsRestored = cost > 0 ? Math.round(wasteSaved / cost) : 0;
+            const dailyMealsRestored = Math.round(monthlyMealsRestored / 30);
+            
+            // Total Tech Cost = $2.01 (tokens + cloud run)
+            const techCost = 2.01;
+            const totalSaved = laborSaved + wasteSaved;
+            const roiRatio = techCost > 0 ? Math.round(totalSaved / techCost) : 0;
+            
+            // Update UI elements
+            document.getElementById("calc-labor-saved").innerText = "$" + Math.round(laborSaved).toLocaleString();
+            document.getElementById("calc-waste-saved").innerText = "$" + Math.round(wasteSaved).toLocaleString();
+            document.getElementById("calc-meals-restored").innerHTML = `Feeds <span style="color: var(--text-primary); font-weight: 700;">${dailyMealsRestored} extra people/day</span> (${monthlyMealsRestored.toLocaleString()}/mo)`;
+            document.getElementById("calc-roi-ratio").innerText = roiRatio.toLocaleString() + "x";
+        }
+
+        // Initialize default select on load
+        window.onload = () => {
+            onDayChange();
+            calculateROI();
+        };
+    </script>
+</body>
+</html>
